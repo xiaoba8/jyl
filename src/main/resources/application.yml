@@ -1,0 +1,66 @@
+# Tomcat
+server:
+    tomcat:
+        max-threads: 10
+        min-spare-threads: 10
+    port: 8080
+
+# mysql
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: password
+    jackson:
+        time-zone: GMT+8
+        date-format: yyyy-MM-dd HH:mm:ss
+    resources:
+            static-locations: classpath:/static/,classpath:/views/
+    cache:
+        ehcache:
+          config: classpath:property/ehcache.xml
+          
+#mybatis
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.example.jyl.dao
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+    field-strategy: 2
+    #驼峰下划线转换
+    db-column-underline: true
+    #刷新mapper 调试神器
+    refresh-mapper: true
+    #数据库大写下划线转换
+    #capital-mode: true
+    #序列接口实现类配置
+    #key-generator: com.baomidou.springboot.xxx
+    #逻辑删除配置（下面3个配置）
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    #自定义SQL注入器
+    #sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
+    #自定义填充策略接口实现
+    #meta-object-handler: com.baomidou.springboot.xxx
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    
+    
+#http:
+    #上传文件大小设置
+    #  maxFileSize: 10Mb
+        #maxRequestSize: 50Mb
+
+# log文件输出在项目根目录，打包后，也回输出在jar文件统计目录。
+# Spring boot的默认log配置很好用，默认10MB一个文件，回定期归档log文件为gz
+logging:
+  file: logs/app.log
+  level:
+    root: INFO
+    com.wxmp.wxcms.mapper: DEBUG
