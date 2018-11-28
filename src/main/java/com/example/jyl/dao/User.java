@@ -9,11 +9,15 @@ import com.baomidou.mybatisplus.annotations.TableName;
 public class User implements Serializable{
 	
 	private Long id;
+	@TableField(exist = false)
 	private String nickname;
 	private String accout;
+	@TableField(exist = false)
 	private String type;
+	@TableField(exist = false)
 	private Date createTime;
 	private String phone;
+	@TableField(exist = false)
 	private String password;
 	
     @TableField(exist = false)
@@ -25,6 +29,7 @@ public class User implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+    
 	public String getNickname() {
 		return nickname;
 	}

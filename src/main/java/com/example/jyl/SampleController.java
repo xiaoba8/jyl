@@ -34,9 +34,10 @@ public class SampleController {
     @RequestMapping("/page")
     public Object selectPage(Model model){
 
-        Page page=new Page(1,10);
-        page = userService.selectUserPage(page, "NORMAL");
-        return page;
+/*        Page page=new Page(1,10);
+        page = userService.selectUserPage(page, "NORMAL");*/
+        User u =userService.selectById("20");  
+        return u;
     }
     
     
